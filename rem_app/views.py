@@ -3,6 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.core.exceptions import ValidationError
+
+from .models import Reminder
 from .serializers import ReminderSerializer
 from .services import ReminderService
 
@@ -23,3 +25,8 @@ class ReminderCreateView(APIView):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
 
+class ReminderListView(APIView):
+    def get(self, request, *args, **kwargs):
+        reminders = Reminder.objects.all().order_by('-created_at')
+        serializer = ReminderSerializer(reminders, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
