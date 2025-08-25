@@ -58,7 +58,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-Now open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser 🚀
+Now open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser
 
 ## Testing with Postman
 
